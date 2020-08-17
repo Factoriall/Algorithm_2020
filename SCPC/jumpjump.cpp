@@ -19,15 +19,6 @@ int rocks[1000001];
 int main(int argc, char** argv)
 {
 	int T, test_case;
-	/*
-	   The freopen function below opens input.txt file in read only mode, and afterward,
-	   the program will read from input.txt file instead of standard(keyboard) input.
-	   To test your program, you may save input data in input.txt file,
-	   and use freopen function to read from the file when using cin function.
-	   You may remove the comment symbols(//) in the below statement and use it.
-	   Use #include<cstdio> or #include <stdio.h> to use the function in your program.
-	   But before submission, you must remove the freopen function or rewrite comment symbols(//).
-	 */	
 
 	freopen("input.txt", "r", stdin);
 
@@ -37,6 +28,7 @@ int main(int argc, char** argv)
         
 		Answer = 0;
 		/////////////////////////////////////////////////////////////////////////////////////////////
+		//Greedy Algorithm 사용하면 된다!
 		int N, K;
 		cin >> N;
 		
@@ -45,12 +37,12 @@ int main(int argc, char** argv)
 		
 		cin >> K;
 		
-		int idx = 0;//현재 arr의 
-		int pnt = 0;
-		while(1){
+		int idx = 0;//현재 array의 index
+		int pnt = 0;//현재 위치
+		while(1){//보낼 수 있는 가장 먼 곳을 잡아주고 도착할 때 까지 Answer 값 올려주기
 		    pnt += K;
 		    int prev = idx;
-		    while(idx < N && pnt >= rocks[idx])
+		    while(idx < N && pnt >= rocks[idx])//돌을 옮길 수 있을 때 까지 옮기기
 		        idx += 1;
 		    Answer += 1;
 		    

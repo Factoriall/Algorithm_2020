@@ -29,15 +29,6 @@ bool isOut(int y, int x, int N){
 int main(int argc, char** argv)
 {
 	int T, test_case;
-	/*
-	   The freopen function below opens input.txt file in read only mode, and afterward,
-	   the program will read from input.txt file instead of standard(keyboard) input.
-	   To test your program, you may save input data in input.txt file,
-	   and use freopen function to read from the file when using cin function.
-	   You may remove the comment symbols(//) in the below statement and use it.
-	   Use #include<cstdio> or #include <stdio.h> to use the function in your program.
-	   But before submission, you must remove the freopen function or rewrite comment symbols(//).
-	 */	
 
 	freopen("input.txt", "r", stdin);
 
@@ -49,6 +40,7 @@ int main(int argc, char** argv)
 		int N;
 		cin >> N;
 		
+		//거울 위치 및 거울을 셌는지 여부 저장
 		for(int i=0; i<N; i++){
 		    for(int j=0; j<N; j++){
 		        scanf("%1d", &room[i][j]);
@@ -62,13 +54,13 @@ int main(int argc, char** argv)
 		int dir = 0;//동쪽
 		int y = 0;
 		int x = 0;
-		while(!isOut(y,x,N)){
+		while(!isOut(y,x,N)){//밖으로 나갈 때 까지 거울 반사시키면서 세기
 		    if(room[y][x] == 0){//직진
 		        y += dy[dir];
 		        x += dx[dir];
 		    }
 		    else if(room[y][x] == 1){//우측 상단에서 좌측 하단으로 45도 기울어진 양면거울
-		        if(!isUsed[y][x]){//거울 사용 안했다면
+		        if(!isUsed[y][x]){//거울 세지 않았다면 기록
 		            isUsed[y][x] = true;
 		            Answer += 1;
 		        }
@@ -96,7 +88,7 @@ int main(int argc, char** argv)
 		        }
 		    }
 		    else{//좌측 상단에서 우측 하단으로 45도 기울어진 양면거울
-                if(!isUsed[y][x]){
+                if(!isUsed[y][x]){//거울 세지 않았다면 기록
 		            isUsed[y][x] = true;
 		            Answer += 1;
 		        }
