@@ -42,39 +42,39 @@ long long sum(int L, int R, int nodeNum, int nodeL, int nodeR){
 
 int main(int argc, char** argv)
 {
-	int T, test_case;
+    int T, test_case;
     /*
-	   - DP + 세그먼트 트리
+        - DP + 세그먼트 트리
         DP만으로는 10만 * 1만 = 10억으로 1초 내에 계산 불가능.
         그러므로 세그먼트 트리를 생성해서 10만을 log로 줄여서 계산.
 
         cin, cout으론 시간 초과 but scanf, printf로 교체하니 넉넉하게 성공
         - 되도록 scanf, printf로 푸는 습관을 들여야 한다!
-	*/	
-	scanf("%d", &T);
+    */
+    scanf("%d", &T);
 
     //세그먼트 트리 구축 과정
-	for (int i = start; i < start + 1000000; i++)
-		arr[i] = dynamicProgramming(i - start + 1);
+    for (int i = start; i < start + 1000000; i++)
+        arr[i] = dynamicProgramming(i - start + 1);
     for (int i = start - 1; i > 0; i--)
-		arr[i] = arr[i * 2] + arr[i * 2 + 1];
+        arr[i] = arr[i * 2] + arr[i * 2 + 1];
 
-	for(test_case = 0; test_case < T; test_case++)
-	{
-		Answer = 0;
-		/////////////////////////////////////////////////////////////////////////////////////////////
+    for(test_case = 0; test_case < T; test_case++)
+    {
+        Answer = 0;
+        /////////////////////////////////////////////////////////////////////////////////////////////
         
         //알고리즘 구현
-	    int n1, n2;
-	    scanf("%d %d", &n1, &n2);
+        int n1, n2;
+        scanf("%d %d", &n1, &n2);
         Answer = sum(n1 - 1, n2 - 1, 1, 0, start - 1);//세그먼트 트리 사용한 결과 찾기
 
-		/////////////////////////////////////////////////////////////////////////////////////////////
-		
-		// Print the answer to standard output(screen).
-		printf("Case #%d\n", test_case+1);
-        printf("%d\n", Answer);
-	}
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
-	return 0;//Your program should return 0 on normal termination.
+        // Print the answer to standard output(screen).
+        printf("Case #%d\n", test_case+1);
+        printf("%d\n", Answer);
+    }
+
+    return 0;//Your program should return 0 on normal termination.
 }
